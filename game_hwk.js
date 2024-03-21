@@ -7,13 +7,13 @@ window.onload = () => {
 
 //global variable
 
-var i = 0;
-var clicks;
-var timeScore;
+let i = 0;
+let clicks;
+let timeScore;
 
 /*start button initiates game and starts counter
 initiates game start on button press*/
-var startButton = document.getElementById("startGame")
+const startButton = document.getElementById("startGame");
 startButton.addEventListener("click", startGame);
 
 const startGame = () => {
@@ -44,10 +44,10 @@ const endGame = () => {
 /* createRandom number function
 creates random number which will later be assigned an icon
 creates an array of 12 random numbers*/
-var randomOrderArray = [];
+let randomOrderArray = [];
 const setRandomTileOrder = (numberOfTiles) => {
     while (randomOrderArray.length < numberOfTiles) {
-        var randomNum = Math.random();
+        let randomNum = Math.random();
         randomNum = randomNum * (numberOfTiles -1);
         randomNum = Math.round(randomNum) + 1;
 
@@ -60,7 +60,7 @@ const setRandomTileOrder = (numberOfTiles) => {
 }
 
 //Set tiles variable for use throughout code
-var tiles = document.querySelectorAll(".gametile");
+const tiles = document.querySelectorAll(".gametile");
 
 const setTiles = () => {
     for(tile of tiles){
@@ -93,7 +93,7 @@ const setTiles = () => {
 }
 
 //Timer Function -> starts timer when game is started end when game is compvare or game is cancelled.
-var count;
+let count;
 
 const startTimer = () => {
     clearInterval(timer); //clears timer before timer starts. This fixes issue if timer is triggered again, when already running. 
@@ -111,26 +111,26 @@ const startTimer = () => {
 
 /* icon assign function -> replaces random numbers with icon pairs
 when icon assigned, tile is also assigned an attribute icon variables */
-var football = `<i class="fas fa-football-ball"></i>`;
-var mask = `<i class="fas fa-ufo"></i>`;
-var pizza = `<i class="fas fa-pizza-slice"></i>`;
-var lightning = `<i class="far fa-bolt"></i>`;
-var bulb = `<i class="fal fa-lightbulb"></i>`;
-var rocket = `<i class="fas fa-rocket"></i>`;
-var bacteria = `<i class="fas fa-bacterium"></i>`;
-var kiwi = `<i class="fas fa-kiwi-bird"></i>`;
-var cocktail = `<i class="fas fa-cocktail"></i>`;
+const football = `<i class="fas fa-football-ball"></i>`;
+const mask = `<i class="fas fa-ufo"></i>`;
+const pizza = `<i class="fas fa-pizza-slice"></i>`;
+const lightning = `<i class="far fa-bolt"></i>`;
+const bulb = `<i class="fal fa-lightbulb"></i>`;
+const rocket = `<i class="fas fa-rocket"></i>`;
+const bacteria = `<i class="fas fa-bacterium"></i>`;
+const kiwi = `<i class="fas fa-kiwi-bird"></i>`;
+const cocktail = `<i class="fas fa-cocktail"></i>`;
 
 
-var selectedTile = ''
-var tileIcon;
-var tileIcons =[];
-var tileIds =[];
+const selectedTile = ''
+let tileIcon;
+const tileIcons =[];
+const tileIds =[];
 
 
 //displayTile -> function which listens for click event and displays tile value on click
 tiles.forEach(tile => tile.addEventListener("click", displayTile));
-var n = 0;
+let n = 0;
 
 const displayTile = (e) => {
     
@@ -141,7 +141,7 @@ const displayTile = (e) => {
     // logs the value of the tile's icon and Id
     tileIcon = e.target.getAttribute("icon");
     tileIcons.push(tileIcon);
-    var tileId = e.target.getAttribute("id");
+    const tileId = e.target.getAttribute("id");
     tileIds.push(tileId);
    
     // this counts number of clicks
@@ -186,7 +186,7 @@ const countMoves = () => {
 
 //ClearTiles -> Clear tiles when new game is started;
 const clearTiles = () => {
-    for(var n = 0; n < tiles.length; n++){
+    for(let n = 0; n < tiles.length; n++){
         tiles[n].style.fontSize = "0em";
         tiles[n].style.backgroundColor = "#44445a";
     }
@@ -202,7 +202,7 @@ if match icons remain displayed and correctly guessed tiles become disabled. */
 //calculateScore -> adds number of clicks and elapsed time to calculate score & displays score upon game compvarion. 
 const calculateScore = () => {
     timeScore = parseInt(timeScore);
-    var calculatedScore = (timeScore + clicks);
+    const calculatedScore = (timeScore + clicks);
     console.log(calculatedScore);
     document.querySelector("#score").firstChild.innerHTML = calculatedScore;
 }
@@ -210,20 +210,20 @@ const calculateScore = () => {
 
 //additional levels of difficulty
 
-var newRGB;
+let newRGB;
 
 const generateRGBVal = () => {
 
     const generateRandomColor = () => {
-        var r = Math.random();
+        let r = Math.random();
         r = r * 255;
         r = Math.round(r);
         return r;
     }
 
-    var rgbValue = [];
-    for (var i = 0; i <= 2; i++) {
-        var singleVal = generateRandomColor();
+    const rgbValue = [];
+    for (let i = 0; i <= 2; i++) {
+        let singleVal = generateRandomColor();
         rgbValue.push(singleVal);
     }
     newRGB = `rgb(${rgbValue[0]},${rgbValue[1]},${rgbValue[2]})`;
